@@ -1,0 +1,50 @@
+.box-shadow (@x: 0px, @y: 3px, @blur: 5px, @spread: 0px, @alpha: 0.5) {
+    -webkit-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.box-shadow-inset (@x: 0px, @y: 3px, @blur: 5px, @spread: 0px, @alpha: 0.5) {
+    -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.sidenav {
+    padding: 10px;
+
+    #profile-pic {
+        border: #eeeeee 1px solid:
+        width: 50px;
+        height: 50px;
+    }
+
+    .uk-list {
+        margin-top: 50px;
+    }
+}
+
+.content-wrapper {
+    border-left: #eeeeee 1px solid;
+    padding: 0px;
+}
+.content {
+    padding: 12px;
+    padding-left: 25px;
+}
+
+#page-header {
+    padding: 20px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    border-bottom: #eeeeee 1px solid;
+}
+
