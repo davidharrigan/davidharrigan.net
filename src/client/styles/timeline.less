@@ -1,0 +1,210 @@
+@line-color: #036564;
+@box-color: #E8DDCB;
+@shadow-color: #CDB380;
+@default-icon-color: #036564;
+@collapse-width: 1100px;
+
+.keyframes(@name; @arguments) {
+  @-moz-keyframes @name { @arguments(); }
+  @-webkit-keyframes @name { @arguments(); }
+  @keyframes @name { @arguments(); }
+}
+
+.animation(@arguments) {
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  animation: @arguments;
+}
+
+.keyframes(bounce; {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+});
+
+.timeline-container {
+  width: 90%;
+  max-width: @collapse-width;
+  margin: 0 auto;
+  padding: 20px;
+}
+#timeline {
+  position: relative;
+  padding: 2em 0;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+#timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 100%;
+  width: 4px;
+  background: @line-color;
+}
+@media screen and (min-width: @collapse-width) {
+  #timeline {
+    margin-top: 3em;
+    margin-bottom: 3em;
+  }
+  #timeline::before {
+    left: 50%;
+    margin-left: -2px;
+  }
+}
+
+//------------- Timeline block --------------
+.timeline-block {
+  position: relative;
+  margin: 2em 0;
+}
+
+
+//------------- Timeline content -------------
+.timeline-content {
+  position: relative;
+  margin-left: 60px;
+  background: @box-color;
+  border-radius: 0.25em;
+  padding: 1em;
+  color: #036564;
+  box-shadow: 0 3px 0 @shadow-color;
+}
+
+.timeline-block:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 100%;
+  height: 0;
+  width: 0;
+  border: 7px solid transparent;
+  border-right: 7px solid @box-color;
+}
+
+@media screen and (min-width: @collapse-width) {
+  .timeline-content {
+    margin-left: 0;
+    padding: 1.6em;
+    width: 40%;
+  }
+
+  .timeline-content::before {
+    top: 24px;
+    left: 100%;
+    border-color: transparent;
+    border-left-color: white;
+  }
+}
+
+// --------------- Timeline date -----------------
+.timeline-content .date {
+  color: #919191;
+  padding: .8em 0;
+}
+
+@media screen and (min-width: @collapse-width) {
+  .timeline-content .date {
+    position: absolute;
+    width: 100%;
+    left: 122%;
+    top: 6px;
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  .timeline-content .date {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+}
+@media only screen and (min-width: @collapse-width) {
+  .timeline-block:nth-child(even) .timeline-content .date {
+    left: auto;
+    right: 122%;
+    text-align: right;
+  }
+}
+
+// ---------------- Timeline icon ------------------
+.timeline-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  background-color: @default-icon-color;
+
+  i {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin-left: -12px;
+    margin-top: -12px;
+  }
+}
+
+@media screen and (min-width: @collapse-width) {
+  .timeline-icon {
+    width: 60px;
+    height: 60px;
+    left: 50%;
+    margin-left: -30px;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+@media screen and (min-width: @collapse-width) {
+  .timeline-block {
+    margin: 4em 0;
+  }
+  .timeline-block:nth-child(even) .timeline-content {
+    float: right;
+  }
+  .timeline-block:nth-child(even) .timeline-content::before {
+    top: 24px;
+    left: auto;
+    right: 100%;
+    border-color: transparent;
+    border-right-color: white;
+  }
+}
+
+// Animation
+.timeline-icon.is-hidden {
+  visibility: hidden;
+}
+.timeline-content.is-hidden {
+  visibility: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.4s 0s, visibility 0s 0.2s;
+}
+.timeline-icon.bounce-in {
+  visibility: visible;
+  .animation(bounce 0.8s)
+}
+.timeline-content.bounce-in {
+  visibility: visible;
+  transform: translateX(0);
+  transition: transform 0.4s 0s, visibility 0.4s 0s;
+}

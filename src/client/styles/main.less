@@ -10,19 +10,73 @@
     box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
 }
 
+@sidenav-width: 250px;
+@header-height: 50px;
+
+@transition-time: .75s;
+
+@sidenav-bg-color: #2D333A;
+@content-bg-color: #485274;
+@header-bg-color: #556270;
+
+@sidenav-font-color: #ffffff;
+@content-font-color: #ffffff;
+
 html, body {
     height: 100%;
+    font-family: 'Palanquin', sans-serif;
 }
 
-.wrapper {
+/**
+ * main wrapper
+ */
+.main-wrapper {
     height: 100%;
+    width: 100%;
+}
+.main-wrapper.sidenav-is-visible {
 }
 
+/**
+ * Side nav
+ */
+.sidenav-wrapper {
+    background-color: @sidenav-bg-color;
+    color: @sidenav-font-color;
+    height: 100%;
+    width: @sidenav-width;
+
+    .box-shadow-inset(-1px, 2px, 6px, -2px, 0.75);
+
+    /* this is the 3D navigation container */
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    /* enable a 3D-space for children elements */
+    perspective: 1000px;
+    transform: translateX(-100%);
+    transition: transform @transition-time 0s, visibility 0s @transition-time;
+}
+.sidenav-wrapper.sidenav-is-visible {
+    visibility: visible;
+    transform: translateX(0);
+    transition: transform @transition-time 0s, visibility @transition-time 0s;
+    z-index: 500;
+}
 .sidenav {
-    padding: 10px;
+    transform-origin: center left;
+    transform: rotateY(90deg);
+    transition: transform @transition-time; 
+
+    padding: 20px;
+    position: relative;
+
+    h2 {
+        color: #036564;
+    }
 
     #profile-pic {
-        border: #eeeeee 1px solid:
         width: 50px;
         height: 50px;
     }
@@ -31,20 +85,99 @@ html, body {
         margin-top: 50px;
     }
 }
+.sidenav.sidenav-is-visible {
+    transform: rotateY(0);
+    transition: transform @transition-time; 
+}
 
+/**
+ * Content
+ */
 .content-wrapper {
-    border-left: #eeeeee 1px solid;
-    padding: 0px;
+    transition: padding-left @transition-time;
+    padding-left: 0;
+    background-color: @content-bg-color;
+    min-height: 100%;
+    color: @content-font-color;
+}
+.content-wrapper.sidenav-is-visible {
+    transition: padding-left @transition-time;
+    padding-left: @sidenav-width;
+}
+
+@media screen and (min-width: 768px) {
+    .content-wrapper.sidenav-is-visible {
+        transition: padding-left @transition-time;
+        padding-left: @sidenav-width;
+    }
 }
 .content {
     padding: 12px;
     padding-left: 25px;
 }
-
-#page-header {
-    padding: 20px;
-    padding-bottom: 10px;
-    padding-left: 25px;
-    border-bottom: #eeeeee 1px solid;
+.content.sidenav-is-visible {
 }
 
+/**
+ * Side nav toggle
+ */
+.sidenav-toggle-btn {
+    position: absolute; left: 1%; top: 4%; z-index: 1000;
+    cursor: pointer; padding: 10px 35px 16px 0px;
+    transition: left @transition-time;
+}
+.sidenav-toggle-btn.sidenav-is-visible {
+    left: @sidenav-width + 10px;
+    transition: left @transition-time;
+}
+.sidenav-toggle-btn span, .sidenav-toggle-btn span:before, .sidenav-toggle-btn span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: white;
+  position: absolute;
+  display: block;
+  content: '';
+}
+.sidenav-toggle-btn span:before {
+  top: -10px; 
+}
+.sidenav-toggle-btn span:after {
+  bottom: -10px;
+}
+
+.sidenav-toggle-btn span, .sidenav-toggle-btn span:before, .sidenav-toggle-btn span:after {
+  transition: all @transition-time ease-in-out;
+}
+.sidenav-toggle-btn.sidenav-is-visible span {
+  background-color: transparent;
+}
+.sidenav-toggle-btn.sidenav-is-visible span:before, .sidenav-toggle-btn.sidenav-is-visible span:after {
+  top: 0;
+}
+.sidenav-toggle-btn.sidenav-is-visible span:before {
+  transform: rotate(45deg);
+}
+.sidenav-toggle-btn.sidenav-is-visible span:after {
+  transform: rotate(-45deg);
+}
+
+#page-header {
+    background-color: @header-bg-color;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    .box-shadow(-1px, 2px, 6px, -2px, 0.75);
+
+    nav-toggle {
+        display: inline-block;
+    }
+
+    h3 {
+        display: inline-block;
+        padding-left: 30px;
+        padding-top: 10px;
+        font-weight: 900;
+        color: #ffffff;
+    }
+}

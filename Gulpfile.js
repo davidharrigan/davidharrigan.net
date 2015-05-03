@@ -7,6 +7,8 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')();
 
 var src = {
+  img: ['src/client/img/**/*.*'],
+  fonts: ['src/client/fonts/**/*.*'],
   less: ['src/client/styles/**/*.less'],
   js: ['src/client/js/main.js', 
        'src/client/js/config/*.js',
@@ -64,7 +66,8 @@ var vendor = function() {
 
     // grab vendor font files from bower_components and push
     .pipe(fontFilter)
-    .pipe(gulp.dest(distDir + 'fonts/'));
+    .pipe(gulp.dest(distDir + 'fonts/'))
+    .pipe(fontFilter.restore());
 };
 gulp.task('vendor', vendor);
 
@@ -100,6 +103,21 @@ var styles = function() {
 gulp.task('styles', styles);
 
 /**
+ * Move images over to dist
+ */
+var images = function() {
+  return gulp.src(src.img)
+    .pipe(gulp.dest(distDir + 'img'));
+}
+gulp.task('images', images);
+
+var fonts = function() {
+  return gulp.src(src.fonts)
+    .pipe(gulp.dest(distDir + 'fonts'));
+}
+gulp.task('fonts', fonts);
+
+/**
  * Development Helpers
  **/
 gulp.task('watch', function() {
@@ -131,11 +149,18 @@ gulp.task('watch', function() {
     './src/client/styles/*.less',
     './src/client/styles/**/*.less',
   ], ['styles']).on('change', styles);
+
+  gulp.watch([
+    './src/client/images/**/*.png',
+  ], ['images']).on('change', images);
+
+  gulp.watch(src.fonts, ['fonts'])
+    .on('change', fonts);
 });
 
 /**
  * Task Aliases
  **/
-gulp.task('dev', ['scripts', 'partials', 'styles', 'vendor', 'watch']);
+gulp.task('dev', ['scripts', 'partials', 'styles', 'images', 'fonts', 'vendor', 'watch']);
 gulp.task('build', ['scripts', 'partials', 'vendor', 'styles']);
 gulp.task('default', ['build']);

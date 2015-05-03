@@ -11,18 +11,19 @@
   </head>
 
   <body>
-    <div class="uk-grid wrapper" data-uk-grid-margin ng-init="hideNav=false;">
-      <div ng-class="hideNav ? 'ng-hide' : 'uk-width-medium-1-3'" class="side-nav-wrapper">
+    <div class="main-wrapper" ng-init="hideNav=false;">
+      <div class="sidenav-wrapper">
         <side-nav></side-nav>
       </div>
+
       <div class="content-wrapper">
-        <div ng-class="hideNav ? 'uk-width-1-1' : 'uk-width-medium-2-3'">
-          <button class="uk-btn" ng-click="hideNav = true;">btn</button>
-          <header></header>
-          <div class="content" ng-view></div>
-        </div>
+        <header></header>
+        <div class="content" ng-view></div>
       </div>
+
     </div>
+
+    <!-- Scripts -->
     <script src="/static/vendor/vendor.js"></script>
     <script src="/static/dh.js"></script>
   </body>

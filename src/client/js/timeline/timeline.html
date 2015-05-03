@@ -1,1 +1,13 @@
-<div id="timeline"></div>
+<div class="timeline-container" id="timeline">
+    <div class="timeline-block" ng-repeat="block in vm.timelineContent">
+        <div class="timeline-icon"  style="background: {{ block.bg_color }}">
+            <i class="{{ block.icon }} uk-icon-small"></i>
+        </div> <!-- timeline-icon -->
+
+        <div class="timeline-content">
+            <h2>{{ block.title }}</h2>
+            <p>{{ block.content }}</p>
+            <span class="date">{{ block.date }}</span>
+        </div> <!-- timeline-content -->
+    </div> <!-- timeline-block -->
+</div>
