@@ -1,0 +1,25 @@
+<div id="projects" ng-controller="projectPageController as vm">
+    <div class="uk-flex uk-flex-wrap">
+
+        <div class="uk-width-medium-1-4 uk-margin-right uk-margin-bottom uk-panel uk-panel-box project-panel" ng-repeat="project in vm.projects">
+            <h3 class="uk-panel-title" ng-bind="project.title"></h3>
+
+            <center>
+                <img class="uk-thumbnail" src="{{ project.img }}">
+            </center>
+
+            <div class="uk-flex uk-flex-center uk-margin-top">
+                <p ng-bind="project.desc"></p>
+            </div>
+
+            <div class="uk-flex panel-footer">
+                <a ng-if="project.source" href="{{ project.source }}" target="_blank">Source</a>
+                <span ng-if="project.source && project.demo"
+                    class="uk-margin-small-right uk-margin-small-left">
+                    <i class="uk-icon-ellipsis-v"></i>
+                </span>
+                <a ng-if="project.demo" href="{{ project.demo }}" target="_blank">Demo</a>
+            </div>
+        </div>
+    </div>
+</div>

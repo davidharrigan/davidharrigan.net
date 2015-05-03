@@ -17,6 +17,14 @@
       templateUrl: '/static/partials/pages/about.html',
       title: 'About'
     })
+    .when('/projects', {
+      templateUrl: '/static/partials/pages/projects.html',
+      title: 'Projects'
+    })
+    .when('/contact', {
+      templateUrl: '/static/partials/pages/contact.html',
+      title: 'Contact'
+    })
     .otherwise('/');
   }
 })();
