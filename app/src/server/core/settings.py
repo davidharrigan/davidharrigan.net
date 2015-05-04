@@ -11,7 +11,9 @@ DEBUG = True
 # Port on which the HTTP Server will bind.
 PORT = 8080
 
-STATIC_DIR = "../../dist"
+STATIC_DIR = "dist"
+
+GCAPTCHA_SECRET = os.environ.get("GCAPTCHA_SECRET", "")
 
 # Tornado Server Configuration.
 TORNADO_SETTINGS = {
@@ -20,6 +22,4 @@ TORNADO_SETTINGS = {
         "autoreload": DEBUG,
         "static_path": STATIC_DIR,
         "template_path": base_dir('templates'),
-        "cookie_secret": "@TODO_THISvalueShouldBeRandom_TODO",
-        "xsrf_cookies": False  # TODO: set this to True
 }

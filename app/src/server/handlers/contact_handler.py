@@ -3,13 +3,13 @@ import requests
 
 from .base import BaseRequestHandler
 
-from core.settings import DEBUG
+from core.settings import GCAPTCHA_SECRET
 from models.contact import Contact
 
 
 class GoogleRecaptchaMixin:
     url = 'https://www.google.com/recaptcha/api/siteverify'
-    secret = '6LdJQwYTAAAAAIev3JF4tEB-bZHXY9xnAwtBuSKx'  #TODO: DONT COMMIT THIS
+    secret = GCAPTCHA_SECRET
 
     def verify_captcha(self, user_entered_response, user_remote_ip):
         payload = {

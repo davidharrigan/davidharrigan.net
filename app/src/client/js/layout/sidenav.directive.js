@@ -9,6 +9,7 @@
     return {
       controller: 'sideNavController',
       controllerAs: 'vm',
+      scope: {},
       restrict: 'E',
       templateUrl: '/static/partials/layout/sidenav.html'
     }

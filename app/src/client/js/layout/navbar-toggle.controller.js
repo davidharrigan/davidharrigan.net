@@ -19,6 +19,10 @@
       angular.element(document.querySelector('.content')).toggleClass('sidenav-is-visible');
     };
 
+    $scope.$on('sidenav-toggle', function() {
+      vm.toggle();
+    });
+
     return vm;
   }
 })();

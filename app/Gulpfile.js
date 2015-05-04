@@ -162,5 +162,5 @@ gulp.task('watch', function() {
  * Task Aliases
  **/
 gulp.task('dev', ['scripts', 'partials', 'styles', 'images', 'fonts', 'vendor', 'watch']);
-gulp.task('build', ['scripts', 'partials', 'vendor', 'styles']);
+gulp.task('build', ['scripts', 'partials', 'styles', 'images', 'fonts', 'vendor']);
 gulp.task('default', ['build']);
