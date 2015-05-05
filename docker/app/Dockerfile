@@ -26,7 +26,7 @@ RUN node_modules/bower/bin/bower install --allow-root
 RUN node_modules/gulp/bin/gulp.js
 
 # expose port(s)
-EXPOSE 80
+EXPOSE 8080
 
 # Run app
 CMD ["/var/www/app/venv/bin/python", "/var/www/app/src/server/app.py"]
