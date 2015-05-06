@@ -34,6 +34,15 @@
       contactService.post(payload).then(successFn, errorFn);
     };
 
+    var onloadCallback = function() {
+      window.grecaptcha.render(
+          'g-recaptcha', {
+            'sitekey' : '6LdJQwYTAAAAAPIuis7N0k44YY_awgp-HpAN6scw'
+      });
+    };
+    var l = onloadCallback();
+    console.log(l);
+
     return vm;
   }
 })();
