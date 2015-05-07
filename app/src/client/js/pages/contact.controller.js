@@ -34,14 +34,16 @@
       contactService.post(payload).then(successFn, errorFn);
     };
 
-    var onloadCallback = function() {
-      window.grecaptcha.render(
-          'g-recaptcha', {
+    // Render recaptcha on route change success
+    $scope.$on('$routeChangeSuccess', function(event, current) {
+      contactService.getRecaptcha().then(function(recaptcha) {
+        var el = document.querySelector("#g-recaptcha");
+        recaptcha.render(
+          el, {
             'sitekey' : '6LdJQwYTAAAAAPIuis7N0k44YY_awgp-HpAN6scw'
+          });
       });
-    };
-    var l = onloadCallback();
-    console.log(l);
+    });
 
     return vm;
   }

@@ -21,6 +21,6 @@
   angular.module('dh.layout', []);
   angular.module('dh.pages', []);
 
-  angular.module('dh');
+  angular.module('dh').run(function(contactService){});
 
 })();

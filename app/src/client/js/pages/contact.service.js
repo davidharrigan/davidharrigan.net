@@ -1,13 +1,19 @@
 (function () {
   'use strict';
 
-  var app = angular.module('dh.layout');
-  app.factory('contactService', ['$http', '$q', ContactService]);
+  var app = angular.module('dh.pages');
+  app.factory('contactService', ['$http', '$q','$window',  ContactService]);
 
-  function ContactService($http, $q) {
-    var contactService = {
-      post: post
-    }
+  function ContactService($http, $q, $window) {
+    var deferred = $q.defer();
+    var promise = deferred.promise;
+    var recaptcha;
+
+    // Captcha callback
+    $window.onloadCallback = function() {
+      recaptcha = $window.grecaptcha;
+      deferred.resolve(recaptcha);
+    };
 
     /**
      * Send contact data to the back-end
@@ -23,6 +29,22 @@
       }
 
       return $http.post('/contact/', contactData).then(postSuccess, postError);
+    }
+
+    /**
+     * Returns a promise for when recaptcha is loaded
+     */
+    function getRecaptcha() {
+      if (!!recaptcha) {
+        return $q.when(recaptcha);
+      }
+      return promise;
+    }
+
+    var contactService = {
+      post: post,
+      recaptcha: recaptcha,
+      getRecaptcha: getRecaptcha
     }
 
     return contactService;
