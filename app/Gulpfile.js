@@ -9,7 +9,9 @@ var gulp = require('gulp'),
 var src = {
   img: ['src/client/img/**/*.*'],
   fonts: ['src/client/fonts/**/*.*'],
-  less: ['src/client/styles/**/*.less'],
+  less: ['src/client/styles/lesshat-prefixed.less',
+         'src/client/styles/lesshat.less',
+         'src/client/styles/**/*.less'],
   js: ['src/client/js/main.js', 
        'src/client/js/config/*.js',
        'src/client/js/timeline/*.js',
@@ -96,8 +98,8 @@ gulp.task('partials', partials);
  */
 var styles = function() {
   return gulp.src(src.less)
-    .pipe($.less())
     .pipe($.concat(dist.css))
+    .pipe($.less())
     .pipe(gulp.dest(distDir));
 };
 gulp.task('styles', styles);

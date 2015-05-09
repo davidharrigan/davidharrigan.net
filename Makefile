@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 run_app:
-	venv/bin/python src/server/app.py
+	cd app && ../venv/bin/python src/server/app.py
 
 # Archives the app and puts it under docker/app directory
 package:

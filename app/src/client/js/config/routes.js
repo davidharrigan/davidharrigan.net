@@ -11,19 +11,19 @@
     $routeProvider
     .when('/', {
       templateUrl: '/static/partials/pages/home.html',
-      title: 'Home'
+      title: 'home'
     })
     .when('/about', {
       templateUrl: '/static/partials/pages/about.html',
-      title: 'About'
+      title: 'about'
     })
     .when('/projects', {
       templateUrl: '/static/partials/pages/projects.html',
-      title: 'Projects'
+      title: 'projects'
     })
     .when('/contact', {
       templateUrl: '/static/partials/pages/contact.html',
-      title: 'Contact'
+      title: 'contact'
     })
     .otherwise('/');
   }

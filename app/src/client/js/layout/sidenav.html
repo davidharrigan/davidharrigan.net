@@ -3,10 +3,30 @@
     <h2><div id="name">David Harrigan</div></h2>
     <div id="slogan">will someday be an expert developer</div>
 
-    <ul class="uk-list uk-list-line">
-        <li><a href="/#/" ng-click="vm.toggle()"><i class="uk-icon-home"></i> Home</a></li>
-        <li><a href="/#/about" ng-click="vm.toggle()"><i class="uk-icon-user"></i> About</a></li>
-        <li><a href="/#/projects" ng-click="vm.toggle()"><i class="uk-icon-code"></i> Projects</a></li>
-        <li><a href="/#/contact" ng-click="vm.toggle()"><i class="uk-icon-envelope"></i> Contact</a></li>
+    <ul class="uk-list sidenav-links">
+        <li ng-class="{active:vm.isActive('/')}">
+            <a href="/#/" ng-click="vm.toggle()">
+                <span class="list-icon"><i class="uk-icon-home"></i></span>
+                <span class="list-text">Home</span>
+            </a>
+        </li>
+        <li ng-class="{active:vm.isActive('/about')}">
+            <a href="/#/about" ng-click="vm.toggle()">
+                <span class="list-icon"><i class="uk-icon-user"></i></span>
+                <span class="list-text">About</span>
+            </a>
+        </li>
+        <li ng-class="{active:vm.isActive('/projects')}">
+            <a href="/#/projects" ng-click="vm.toggle()">
+                <span class="list-icon"><i class="uk-icon-code"></i></span>
+                <span class="list-text">Projects</span>
+            </a>
+        </li>
+        <li ng-class="{active:vm.isActive('/contact')}">
+            <a href="/#/contact" ng-click="vm.toggle()">
+                <span class="list-icon"><i class="uk-icon-envelope"></i></span>
+                <span class="list-text">Contact</span>
+            </a>
+        </li>
     </ul>
 </div>
