@@ -7,12 +7,12 @@
   function ContactController($scope, $window, contactService) {
     var vm = this;
 
+    vm.isMessageSent = contactService.isMessageSent;
+
     vm.submit = function() {
-      function successFn() {
-
-      }
-      function errorFn() {
-
+      function successFn() { }
+      function errorFn(response) {
+        vm.formError = response;
       }
 
       var grecaptchaResponse = $window.grecaptcha.getResponse();

@@ -1,11 +1,13 @@
 import tornado
 import requests
+import smtplib
 
 from .base import BaseRequestHandler
 
-from core.settings import GCAPTCHA_SECRET
+from core.settings import GCAPTCHA_SECRET, GMAIL_USER, GMAIL_PASS
 from models.contact import Contact
 
+# TODO: LOG
 
 class GoogleRecaptchaMixin:
     url = 'https://www.google.com/recaptcha/api/siteverify'
@@ -31,6 +33,28 @@ class GoogleRecaptchaMixin:
 
 class ContactHandler(BaseRequestHandler, GoogleRecaptchaMixin):
 
+    def send_email(self, contact):
+        sender = "{}@gmail.com".format(GMAIL_USER)
+        receivers = ['dharrigan118@gmail.com']
+
+        message = """
+        Message from: {} {}
+        Contact email: {}
+        Content: {}
+        Client IP: {}
+        """.format(contact.first_name, contact.last_name, contact.email,
+                   contact.content, contact.client_ip)
+
+        try:
+            server = smtplib.SMTP('smtp.gmail.com:587')
+            server.starttls()
+            server.login(GMAIL_USER, GMAIL_PASS)
+            server.sendmail(sender, receivers, message)
+            server.quit()
+            return 1
+        except:
+            print("Error: unable to send email")
+
     def post(self):
         """ Submits a contact form """
 
@@ -52,20 +76,16 @@ class ContactHandler(BaseRequestHandler, GoogleRecaptchaMixin):
             return
 
         # Save user inputs
-        # TODO: do real validation
         if not first_name or not last_name or not email:
-            return self.write_response('Missing requried fields', status=400)
+            return self.write_response('Missing required fields', status=400)
 
         # Create contact
         contact = Contact(first_name=first_name, last_name=last_name, email=email,
                           content=content, client_ip=client_ip)
         self.session.add(contact)
-        self.session.commit()
+
+        if not self.send_email(contact):
+            self.write_response("Failed to send email - please try again later", status=500)
 
         # Success
         self.write_response(contact.as_dict(), status=201)
-
-
-
-
-

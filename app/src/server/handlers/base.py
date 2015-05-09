@@ -23,7 +23,8 @@ class BaseRequestHandler(web.RequestHandler):
         """
         try:
             result = {'status': status, 'response': response}
-            self.write(escape.json_encode(result))
+            self.set_status(status)
+            self.finish(escape.json_encode(result))
         except Exception as e:
             # TODO: log e but don't actually return it in response
             self.write(json.dumps({

@@ -6,19 +6,19 @@
       "title": 'Born',
       "date": "Jan 1992",
       "icon": "uk-icon-user",
-      "content": "I was born in Zushi Kanagawa Preficture, Japan. It is located ~40 miles south of Tokyo.  I was born between a Japanese mother and an American father. Japanese is my native tounge, I did not speak any English at all until my big move to America in 6th grade"
+      "content": "I was born in Zushi Kanagawa Preficture, Japan. It is located  about 40 miles south of Tokyo.  I was born between a Japanese mother and an American father. Japanese is my native tounge, I did not speak any English at all until my big move to America in 6th grade"
     },
     {
       "title": 'Moved to USA',
       "date": "June 2003",
       "icon": "uk-icon-plane",
-      "content": "This is probably the biggest and scariest event that has happened to me.  I did not speak the language and I'm sure you can imagine, America is nothing like Japan. It was a culture shock."
+      "content": "This is probably the biggest and scariest event that has happened to me.  I did not speak the language and I'm sure you can imagine, America is nothing like Japan. It was a culture shock. First word I learned to spell was 'Pizza' - it's everywhere."
     },
     {
       "title": 'Graduated Kingswood Regional Highschool',
       "date": "May 2010",
       "icon": "uk-icon-graduation-cap",
-      "content": "During my high school years, I indulged myself in hacking away at my gadgets, playing baseball, and playing the saxophone and guitar.  I met some of my best friends during this time whom I still hangout and talk to regularly."
+      "content": "During my high school years, I indulged myself in hacking away my gadgets, playing baseball, and playing the saxophone and guitar.  I met some of my best friends during this time who I still hangout and talk to regularly."
     },
     {
       "title": 'Graduated University of New Hampshire',
@@ -30,7 +30,7 @@
       "title": 'Professional Career Began at Dyn',
       "date": "July 2014",
       "icon": "uk-icon-briefcase",
-      "content": "I received an offer from a reputable, New Hampshire based company after my graduation.  It is an exciting place and we move fast.  I have learned a tremoundous amount from my coworkers and my skills are exponentioally growing"
+      "content": "I received an offer from a reputable New Hampshire based company after my graduation.  It is an exciting place to be and we move fast.  I have learned a tremoundous amount from my coworkers and my skills are exponentioally growing"
     }
   ];
 

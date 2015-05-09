@@ -14,6 +14,8 @@ PORT = 8080
 STATIC_DIR = "dist"
 
 GCAPTCHA_SECRET = os.environ.get("GCAPTCHA_SECRET", "")
+GMAIL_USER = os.environ.get("GMAIL_USER", "")
+GMAIL_PASS = os.environ.get("GMAIL_PASS", "")
 
 # Tornado Server Configuration.
 TORNADO_SETTINGS = {
