@@ -13,7 +13,7 @@
       scope: {},
       template: [
         '<a class="sidenav-toggle-btn" ng-click="vm.toggle()">',
-          '<i class="uk-icon-bars uk-icon-medium"></i>',
+          '<i id="sidenav-icon" class="uk-icon-bars uk-icon-medium"></i>',
         '</a>',
       ].join('')
     }

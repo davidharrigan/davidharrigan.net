@@ -4,20 +4,28 @@
         <div class="uk-panel uk-panel-box" id="contact">
             <h2 class="uk-panel-title">Feel free to contact me!</h2>
 
-            <form class="uk-form responsive-form ng-pristine ng-valid" ng-submit="vm.submit()">
+            <form name="contactForm" class="uk-form responsive-form ng-pristine ng-valid" novalidate
+                  ng-submit="vm.submit()">
 
                 <!-- name field -->
                 <div class="uk-grid uk-grid-small" data-uk-grid-margin>
-                    <div class="uk-width-1-1">
-                        <label class="uk-form-label">Name</label>
-                    </div>
+                    <div class="uk-width-1-1"><label class="uk-form-label">Name</label></div>
                     <div class="uk-width-medium-1-2 uk-form-icon">
                         <i class="uk-icon-user"></i>
-                        <input ng-model="vm.firstName" class="uk-width-1-1" type="text" id="first-name" placeholder="First Name" required>
+                        <input ng-model="vm.firstName" class="uk-width-1-1" type="text" id="first-name" placeholder="First Name" required=""
+                               name="firstName">
                     </div>
                     <div class="uk-width-medium-1-2">
-                        <input ng-model="vm.lastName" class="uk-width-1-1" name="name" type="text" id="last-name" placeholder="Last Name" required>
+                        <input ng-model="vm.lastName" class="uk-width-1-1" type="text" id="last-name" placeholder="Last Name" required="" name="lastName">
                     </div>
+
+                    <!-- error fields -->
+                    <div class="uk-width-1-1 uk-text-danger" ng-show="contactForm.$submitted || contactForm.firstName.$touched || contactForm.lastName.$touched">
+                        <ul>
+                            <li ng-show="contactForm.firstName.$touched && contactForm.firstName.$error.required">Please tell me your first name</li>
+                            <li ng-show="contactForm.lastName.$touched && contactForm.lastName.$error.required">Please tell me your last name</li>
+                        </ul>
+                    </div> <!-- end error fields -->
                 </div> <!-- end name -->
 
                 <!-- email -->
@@ -27,7 +35,14 @@
                     </div>
                     <div class="uk-width-1-1 uk-form-icon">
                         <i class="uk-icon-envelope"></i>
-                        <input ng-model="vm.email" type="email" id="email" class="uk-width-1-1" placeholder="Your Email Address" required>
+                        <input ng-model="vm.email" type="email" name="email" id="email" class="uk-width-1-1" placeholder="Your Email Address" required="">
+                    </div>
+                    <!-- error fields -->
+                    <div class="uk-width-1-1 uk-text-danger" ng-show="contactForm.$submitted || contactForm.email.$touched">
+                        <ul>
+                            <li ng-show="contactForm.email.$error.required">Please tell me your email so we can get in touch!</li>
+                            <li ng-show="contactForm.email.$error.email">Oh this doesn't look like a valid email address</li>
+                        </ul>
                     </div>
                 </div> <!-- end email -->
 
@@ -37,7 +52,13 @@
                         <label class="uk-form-label" for="content">Content</label>
                     </div>
                     <div class="uk-width-1-1">
-                        <textarea ng-model="vm.content" id="content" placeholder="Your message..."></textarea>
+                        <textarea ng-model="vm.content" id="content" name="content" placeholder="Your message..." required=""></textarea>
+                    </div>
+                    <!-- error fields -->
+                    <div class="uk-width-1-1 uk-text-danger" ng-show="contactForm.$submitted || contactForm.content.$touched">
+                        <ul>
+                            <li ng-show="contactForm.content.$error.required">Please tell me why you are contacting me :)</li>
+                        </ul>
                     </div>
                 </div> <!-- end content -->
 
