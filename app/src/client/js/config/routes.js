@@ -21,10 +21,6 @@
       templateUrl: '/static/partials/pages/projects.html',
       title: 'projects'
     })
-    .when('/contact', {
-      templateUrl: '/static/partials/pages/contact.html',
-      title: 'contact'
-    })
     .otherwise('/');
   }
 })();
